@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from ..database import Base
 from ..main import app, get_db
 
-SQLALCHEMY_DATABASE_URL = "mysql://root:Bu.62991881@localhost/cotabest-test"
+#SQLALCHEMY_DATABASE_URL = "mysql://root:password@localhost/cotabest-test"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
