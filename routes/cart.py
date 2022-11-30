@@ -13,6 +13,14 @@ router = APIRouter(
 def create_cart(buyer:int,  db: Session = Depends(get_db)):
     return querys.create_cart(db=db, buyer=buyer)
      
-@router.post('/adicionar/{cart}', response_model=schemas.CartItem)
+@router.post('/adicionar/{cart}')
 def add_item_cart(id_item:int, id_cart:str, quantity: int ,db: Session = Depends(get_db) ):
     return querys.verify_quantity(db=db, id_item=id_item, quantity=quantity, id_cart=id_cart)
+
+@router.get('/{id_cart}',)
+def get_cart(id_cart:str, db: Session = Depends(get_db)):
+    return querys.cart(db=db, id_cart=id_cart, cart_item=schemas.CartItem  )
+
+@router.put('/editar-item/{id_item}')
+def edit_item(id_item:int, id_cart:str, db: Session = Depends(get_db)):
+    pass

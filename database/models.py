@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from .db import Base
-
+from sqlalchemy.dialects.mysql import FLOAT
 
 class Item(Base):
     __tablename__ = 'items'

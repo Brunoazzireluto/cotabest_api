@@ -1,4 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
+
 
 #Schema para chamar os Items
 class ItemBase(BaseModel):
@@ -34,6 +35,7 @@ class Cart(CartBase):
         orm_mode = True
 
 class CartItem(BaseModel):
+    id: int
     id_cart: str
     id_item: int
     quantity: int

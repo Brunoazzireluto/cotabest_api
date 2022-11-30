@@ -10,10 +10,10 @@ router = APIRouter(
 )
 
 
-@router.post("/criar_item", response_model=schemas.Item)
-def create_item(item: schemas.ItemCreate, db: Session = Depends(get_db)):
-    querys.create_item(db=db, item=item)
-    return responses.JSONResponse({"Message": "Item Criado com Sucesso"})
+@router.post("/criar_items")
+def create_item( db: Session = Depends(get_db)):
+    querys.create_item(db=db) 
+    return responses.JSONResponse({"Message": "Items Criados com Sucesso"})
 
 
 @router.get("/item/{id}", response_model=schemas.Item)
@@ -32,4 +32,6 @@ def get_items(db: Session = Depends(get_db)):
 @router.get('/buscar/{name}', status_code=200, response_model=list[schemas.Item])
 def consult_items(name: str, db: Session = Depends(get_db)):
     items = querys.consult_item(db=db, name=name)
+    if len(items) == 0:
+        raise HTTPException(status_code=404, detail="Items Não encontrados")
     return items
