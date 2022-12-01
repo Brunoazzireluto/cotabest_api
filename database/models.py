@@ -7,7 +7,7 @@ class Item(Base):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(120), nullable=False, index=True)
-    price = Column(Float, nullable=False)
+    price = Column(FLOAT(precision=20, scale=2), nullable=False)
     minimun = Column(Integer, nullable=False)
     amount_per_package = Column(Integer, nullable=False)
     max_availability = Column(Integer, nullable=False)
@@ -17,6 +17,7 @@ class Cart(Base):
     __tablename__ = 'carts'
     id = Column(String(200), primary_key=True, index=True)
     buyer = Column(Integer, nullable=False, index=True)
+    total_price = Column(FLOAT(precision=25, scale=2), nullable=True, default=0)
 
     items = relationship('CartItem', back_populates='cart_items')
 
@@ -27,7 +28,7 @@ class CartItem(Base):
     id_cart = Column(String(200), ForeignKey('carts.id'), index=True)
     id_item = Column(Integer, nullable=False )
     quantity = Column(Integer, nullable=False)
-    amount = Column(Float, nullable=False)
+    amount = Column(FLOAT(precision=20, scale=2), nullable=False)
 
     cart_items = relationship('Cart', back_populates='items')
 
@@ -36,6 +37,7 @@ class Order(Base):
     __tablename__ = 'orders'
     id = Column(String(200), primary_key=True, index=True)
     buyer = Column(Integer, nullable=False, index=True)
+    total_price = Column(FLOAT(precision=25, scale=2), nullable=True)
 
     items = relationship('OrderItem', back_populates='order_items')
 
@@ -46,7 +48,7 @@ class OrderItem(Base):
     id_order = Column(String(200), ForeignKey('orders.id'), index=True)
     id_item = Column(Integer, nullable=False )
     quantity = Column(Integer, nullable=False)
-    amount = Column(Float, nullable=False)
+    amount = Column(FLOAT(precision=20, scale=2), nullable=False)
 
 
     order_items = relationship('Order', back_populates='items')

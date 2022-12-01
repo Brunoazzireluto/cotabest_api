@@ -34,7 +34,7 @@ Considerando essas informações, desenvolva um sistema utilizando Django, Flask
 ```
 
 - ### 2 - Crie um sistema de carrinho e disponibilize os endpoints onde um usuário possa:
-    - adicionar um produto ao carrinho, informando a quantidade desejada -> feito
+    - adicionar um produto ao carrinho, informando a quantidade desejada 
     - alterar a quantidade de um determinado produto no carrinho
     - remover um produto do carrinho
     - exibir todos os produtos no carrinho com quantidade e valor total

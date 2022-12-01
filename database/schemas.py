@@ -1,6 +1,5 @@
 from pydantic import BaseModel, validator
 
-
 #Schema para chamar os Items
 class ItemBase(BaseModel):
     name: str
@@ -9,6 +8,7 @@ class ItemBase(BaseModel):
     amount_per_package: int
     max_availability: int
 
+    
 class ItemCreate(ItemBase):
     pass
 
@@ -28,15 +28,23 @@ class CartBase(BaseModel):
 class CartCreate(CartBase):
     pass
 
-class Cart(CartBase):
-    items: list[Item] = []
-
-    class Config:
-        orm_mode = True
 
 class CartItem(BaseModel):
-    id: int
-    id_cart: str
-    id_item: int
+    id:int
+    id_item:int
+    name: str
     quantity: int
     amount: float
+
+
+#Schemas para o modelo de pedidos
+class OrderItem(BaseModel):
+    id:int
+    name: str
+    quantity: int
+    amount: float
+
+class Order(BaseModel):
+    id: str
+    total_price: float
+    items: list[OrderItem] = []
