@@ -212,6 +212,9 @@ def remove_item(db:Session, id:int):
     Função que remove um item do carrinho
     '''
     item_cart = db.query(models.CartItem).filter(models.CartItem.id == id).first()
+    cart = get_cart(db=db, id=item_cart.id_cart)
+    cart.total_price = cart.total_price - item_cart.amount
+    db.commit()
     db.delete(item_cart)
     db.commit()
     return responses.JSONResponse({"Message": "Item Removido"})
@@ -248,3 +251,15 @@ def close_order (db:Session, id_cart: str):
     order_return.append({'id': order.id, 'total_price': order.total_price, 'items': order_item_return})
     return order_return
 	
+#query de exclusão de dados de testes
+
+def delete_test_data(db:Session):
+    '''
+    Query para fazer a exclusão dos itens do banco de dados  
+    '''
+    db.query(models.CartItem).delete()
+    db.query(models.Cart).delete()
+    db.query(models.OrderItem).delete()
+    db.query(models.Order).delete()
+    db.query(models.Item).delete()
+    db.commit()

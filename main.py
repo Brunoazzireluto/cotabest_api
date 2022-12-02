@@ -4,6 +4,9 @@ from database.db import engine, SessionLocal
 from database import models, querys
 from sqlalchemy.orm import Session
 from dependencies import get_db
+from starlette.config import Config
+
+config = Config(".env")
 
 models.Base.metadata.create_all(bind=engine)
 

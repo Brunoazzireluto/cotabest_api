@@ -5,7 +5,7 @@ from dependencies import get_db
 
 
 router = APIRouter(
-    prefix="/Carrinho",
+    prefix="/carrinho",
     tags=["Carrinho"]
 )
 

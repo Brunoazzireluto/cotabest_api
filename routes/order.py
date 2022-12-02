@@ -5,8 +5,8 @@ from dependencies import get_db
 
 
 router = APIRouter(
-    prefix="/Pedido",
-    tags=["pedidos"]
+    prefix="/pedido",
+    tags=["Pedidos"]
 )
 
 @router.post('/fechar_pedido/{id_cart}', description="Rota para Fechar o pedido \
