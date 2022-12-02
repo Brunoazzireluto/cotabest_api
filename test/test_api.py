@@ -150,8 +150,9 @@ def test_create_order():
         assert data[0]['items'][0]['name'] == 'Arroz agulha'
 
 
-def test_xfinal_delete():
-    with TestClient(app) as client:
-        querys.delete_test_data(db=TestingSessionLocal())
+# def test_xfinal_delete():
+
+#     with TestClient(app) as client:
+#         querys.delete_test_data(db=TestingSessionLocal())
 
     

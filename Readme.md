@@ -53,17 +53,17 @@ após a instalação dos frameworks
 
 <br>
 
-## ⚙️ Executando os testes e a aplicação
+## ⚙️ Executando os testes e rodando aplicação em localhost
 
 <br>
 
-para rodar os testes unitários utilizamos código:
+com o virtualenv ativado podemos rodar os testes unitários utilizamos código:
 ```
 pytest
 ```
 
 
-Com o virtualenv ativado podemos rodar a api em localhost, fazemos uso do seguinte comando:
+e para rodar a api em localhost, fazemos uso do seguinte comando:
 
 ```
 uvicorn main:app --reload
@@ -71,11 +71,98 @@ uvicorn main:app --reload
 
 em seguida vamos até http://127.0.0.1:8000/docs para temos uma vizualização de cada Rota da API.
 
+---
+<br>
+ 
+## 🐋 Executando os testes e rodando a aplição em um Contêiner Docker
+
+<br>
+
+Para Criar a imagem do Contêiner com base no dockerfile utilizamos o comando:
+```
+sudo docker build -t cotabestapi .
+```
+
+após o download(se necessário) da imagem do Python 3.10 utilizamos o código:
+```
+sudo docker run -d --name cotabestapi -p 80:80 cotabestapi
+```
+
+Para rodar os testes usamos o comando:
+```
+sudo docker exec cotabestapi pytest
+```
+
+para acessarmos a primeiro pegamos o Ip do Contêiner:
+```
+sudo docker inspect cotabestapi  | grep "IPAddress" 
+```
+
+e por fim acessamos no navegador
+```
+ip.ip.ip.ip/docs
+```
+---
+<br>
+
+## 🌐 Rotas da API
+
+<br>
+
+```
+get -> /itens/ 
+```
+Retorna a Lista de Itens cadastradas no banco de dados
+
+---
+```
+get -> /itens/buscar/{name}
+```
+Retorna uma lista de itens com base no nome pesquisado
+
+---
+```
+post -> /carrinho/carrinho/{buyer}
+```
+Cria um novo carrinho e retorna a string desse carrinho.  `buyer` -> id do usuario que está fazendo a compra
+
+---
+```
+post -> /carrinho/adicionar/{id_cart}?id_item={id_item}&quantity={quantity}
+```
+Adiciona ao carrinho um produto com base no id do item e da quantidade passada, caso a quantidade seja menor que o mínimo do produto ou ultrapasse o máximo em estoque a rota retorna um erro contendo a mensagem de aviso.
+
+---
+```
+get -> /carrinho/{id_cart}
+```
+Busca os dados do carrinho mostrando o valor total e os itens adicionados.
+
+---
+```
+put -> /carrinho/editar-item/{id}?quantity={quantity}
+```
+Edita a quantidade de itens em um carrinho com a mesma validação que existe na rota de adição, 
+o id neste caso seria o do item que está na tabela `cart_item`
+
+---
+```
+delete -> /carrinho/remover/{id}
+```
+Remove o item do carrinho, o id neste caso seria o do item que está na tabela `cart_item`
+
+---
+```
+post -> /pedido/fechar_pedido/{id_cart}
+```
+Cria um pedido, salva ele no banco de dados e limpa o carrinho anterior.
+
+---
+
+<br>
+<br>
+<br>
+<br>
 
 
-
-docker inspect cotabest  | grep "IPAddress"
-docker inspect mycontainer  | grep "IPAddress"
-
-https://fastapi.tiangolo.com/deployment/docker/
-https://stackoverflow.com/questions/17157721/how-to-get-a-docker-containers-ip-address-from-the-host
+Feito por [Bruno Alves](https://github.com/Brunoazzireluto)
