@@ -6,6 +6,25 @@ para as especificações do que a api pode fazer ver o arquivo [test.md](./test.
 a modelagem do banco de dados pode ser vista no arquivo [models.png](./database/models.png)
 
 ---
+<br>
+
+### 🛠️ Ferramentas utilizadas no projeto
+
+<br>
+
+<div style="display: inline_block">
+
+<img align="center" style="margin: 3px" alt="Python" src="https://img.shields.io/badge/-python-%233776AB?style=for-the-badge&logo=python&logoColor=white" />
+<img align="center" style="margin: 3px"  alt="FastAPI" src="https://img.shields.io/badge/-fastapi-%23009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+<img align="center" style="margin: 3px"  alt="Sqlite" src="https://img.shields.io/badge/-sqlite-%23003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
+<img align="center" style="margin: 3px"  alt="Docker" src="https://img.shields.io/badge/-docker-%232496ED?style=for-the-badge&logo=docker&logoColor=white" />
+
+</div>
+
+<Br>
+
+---
+
 
 <br>
 
